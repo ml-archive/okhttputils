@@ -34,7 +34,7 @@ afterEvaluate { project ->
 
                 pom.project {
                     name _name
-                    packaging 'jar'
+                    packaging 'aar'
                     description _description
                     url 'https://github.com/nodes-android/okhttputils'
                     inceptionYear '2016'
@@ -73,22 +73,13 @@ afterEvaluate { project ->
         sign configurations.archives
     }
 
-    task androidJavadocs(type: Javadoc) {
-        source = sourceSets.main.allJava
-    }
-
-    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-        classifier = 'javadoc'
-        from androidJavadocs.destinationDir
-    }
-
-    task sourcesJar(type: Jar) {
+    task androidSourcesJar(type: Jar) {
         classifier = 'sources'
-        from sourceSets.main.allSource
+        from android.sourceSets.main.java.sourceFiles
     }
 
     artifacts {
-        archives sourcesJar, androidJavadocsJar
+        archives androidSourcesJar
     }
 
 }
