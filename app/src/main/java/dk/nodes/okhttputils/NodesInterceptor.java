@@ -11,13 +11,14 @@ import okhttp3.Response;
 public class NodesInterceptor implements Interceptor {
 
     private static String metaHeader = "";
+    public static String metaHeaderKey = "N-Meta";
 
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain
                 .request()
                 .newBuilder()
-                .header("N-Meta", metaHeader)
+                .header(metaHeaderKey, metaHeader)
                 .header("Accept", "application/vnd.nodes.v1+json")
                 .build();
 
