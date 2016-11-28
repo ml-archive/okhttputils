@@ -10,8 +10,27 @@ import okhttp3.Response;
  */
 public class NodesInterceptor implements Interceptor {
 
-    private static String metaHeader = "";
-    public static String metaHeaderKey = "N-Meta";
+    private String metaHeader = "";
+    private String metaHeaderKey = "N-Meta";
+    private String environment = "";
+    private String appVersion = "";
+    private String osVersion = "";
+    private String device = "";
+
+    public NodesInterceptor(String metaKey, String environment, String appVersion, String osVersion, String device) {
+        this.metaHeaderKey = metaKey;
+        this.environment = environment;
+        this.appVersion = appVersion;
+        this.osVersion = osVersion;
+        this.device = device;
+    }
+
+    public NodesInterceptor(String environment, String appVersion, String osVersion, String device) {
+        this.environment = environment;
+        this.appVersion = appVersion;
+        this.osVersion = osVersion;
+        this.device = device;
+    }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
@@ -25,7 +44,7 @@ public class NodesInterceptor implements Interceptor {
         return chain.proceed(request);
     }
 
-    public static void makeMetaHeader(String environment, String appVersion, String osVersion, String device) {
+    public void makeMetaHeader() {
         metaHeader = String.format(
                 "android;%s;%s;%s;%s",
                 environment,
