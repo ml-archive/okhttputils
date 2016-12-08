@@ -19,7 +19,20 @@ android {
     }
 }
 
+task installArchives(type: Upload) {
+    description "Installs the artifacts to the local Maven repository."
+    repositories.mavenInstaller {
+        configuration = configurations.default
+        pom.groupId = 'dk.nodes.utils'
+        pom.artifactId = 'okhttp'
+        pom.version = '0.5-LOCAL'
+        pom.packaging = 'jar'
+    }
+}
+
 dependencies {
-    compile 'com.squareup.okhttp3:okhttp:3.2.0'
-    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.google.code.gson:gson:2.8.0'
 }
