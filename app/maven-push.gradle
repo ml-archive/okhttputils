@@ -7,7 +7,7 @@ def _ossrhPassword = this.properties['NEXUS_PASSWORD']
 
 // Artifact settings
 def _group = 'dk.nodes.utils'
-def _version = '0.6'
+def _version = '0.7'
 def _archivesBaseName = 'okhttp'
 
 def _name = 'Various utils for OkHttp'

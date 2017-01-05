@@ -4,7 +4,7 @@ package dk.nodes.okhttputils.error;
  * Created by bison on 09/12/16.
  */
 
-public abstract class HttpErrorHandler {
+public class HttpErrorHandler {
     public String errorMessage = null;
     public boolean finishApp;
 
@@ -26,7 +26,10 @@ public abstract class HttpErrorHandler {
      * @param url
      * @return
      */
-    public abstract boolean onError(int errorCode, String url);
+    public boolean onError(int errorCode, String url)
+    {
+        return true;
+    }
 
     public void onDialogClosed() {}
 }
