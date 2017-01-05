@@ -1,3 +1,17 @@
 <resources>
-
+    <style name="DialogStyle" parent="@android:style/Theme.DeviceDefault.Light.Dialog">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">#000</item>
+        <item name="android:background">#fff</item>
+        <!-- <item name="android:windowBackground">#ffffff</item> -->
+    </style>
+    <style name="TransparentActivity" parent="@android:style/Theme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 </resources>
