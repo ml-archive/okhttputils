@@ -47,7 +47,7 @@ will not get called.
 
 ## Installation
 ```groovy
-compile ('dk.nodes.utils:okhttp:0.6')
+compile ('dk.nodes.utils:okhttp:0.7')
 {
     exclude module: 'retrofit:2.1.0'
     exclude module: 'converter-gson:2.1.0'
