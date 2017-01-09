@@ -53,4 +53,9 @@ public class NodesInterceptor implements Interceptor {
                 device
         );
     }
+
+    public String getMetaHeader()
+    {
+        return metaHeader;
+    }
 }
