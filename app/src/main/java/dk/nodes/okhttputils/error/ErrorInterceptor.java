@@ -38,8 +38,6 @@ public class ErrorInterceptor implements Interceptor
                     if(show_dialog)
                         launchErrorActivity();
                 }
-                else
-                    launchErrorActivity();
             }
             return response;
         }

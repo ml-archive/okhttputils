@@ -25,7 +25,7 @@ task installArchives(type: Upload) {
         configuration = configurations.default
         pom.groupId = 'dk.nodes.utils'
         pom.artifactId = 'okhttp'
-        pom.version = '0.8-LOCAL'
+        pom.version = '0.9-LOCAL'
         pom.packaging = 'jar'
     }
 }
