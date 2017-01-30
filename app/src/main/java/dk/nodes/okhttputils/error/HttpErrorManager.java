@@ -12,6 +12,7 @@ import java.util.Map;
 public class HttpErrorManager {
     static HashMap<Integer, HttpErrorHandler> errorHandlerMap = new HashMap<>();
     public static String NO_INTERNET = "No internet connection";
+    public static String TIMEOUT = "Timeout";
     public static Context context;
 
 

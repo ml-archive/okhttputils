@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
+
 import okhttp3.Interceptor;
 import okhttp3.Response;
 
@@ -46,6 +48,10 @@ public class ErrorInterceptor implements Interceptor
             if(e instanceof java.net.UnknownHostException)
             {
                 errorMsg = HttpErrorManager.NO_INTERNET;
+            }
+            if(e instanceof SocketTimeoutException)
+            {
+                errorMsg = HttpErrorManager.TIMEOUT;
             }
             launchErrorActivity();
             e.printStackTrace();
