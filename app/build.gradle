@@ -21,12 +21,14 @@ android {
 
 task installArchives(type: Upload) {
     description "Installs the artifacts to the local Maven repository."
-    repositories.mavenInstaller {
-        configuration = configurations.default
-        pom.groupId = 'dk.nodes.utils'
-        pom.artifactId = 'okhttp'
-        pom.version = '0.10-LOCAL'
-        pom.packaging = 'jar'
+    configuration = configurations['archives']
+    repositories {
+        mavenDeployer {
+            pom.groupId = 'dk.nodes.utils'
+            pom.artifactId = 'okhttp'
+            pom.version = '0.11-LOCAL'
+            repository url: repositories.mavenLocal().url
+        }
     }
 }
 

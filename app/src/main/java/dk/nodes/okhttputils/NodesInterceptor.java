@@ -23,6 +23,7 @@ public class NodesInterceptor implements Interceptor {
         this.appVersion = appVersion;
         this.osVersion = osVersion;
         this.device = device;
+        makeMetaHeader();
     }
 
     public NodesInterceptor(String environment, String appVersion, String osVersion, String device) {
@@ -30,6 +31,7 @@ public class NodesInterceptor implements Interceptor {
         this.appVersion = appVersion;
         this.osVersion = osVersion;
         this.device = device;
+        makeMetaHeader();
     }
 
     @Override
@@ -44,7 +46,7 @@ public class NodesInterceptor implements Interceptor {
         return chain.proceed(request);
     }
 
-    public void makeMetaHeader() {
+    private void makeMetaHeader() {
         metaHeader = String.format(
                 "android;%s;%s;%s;%s",
                 environment,
