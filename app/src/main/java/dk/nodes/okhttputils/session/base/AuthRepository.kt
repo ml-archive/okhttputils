@@ -1,7 +1,7 @@
 package dk.nodes.okhttputils.session.base
 
 /**
- * A local (SharedPreferences, Room, ...) repository for storing tokens.
+ * A local repository for storing tokens. Implementation normally would use SharedPreferences or Room.
  */
 interface AuthRepository {
 
@@ -27,7 +27,7 @@ interface AuthRepository {
 
 
     /**
-     * Clears all stored tokens
+     * Clears all stored tokens. Call this if a user signs out.
      */
     fun clear()
 }
