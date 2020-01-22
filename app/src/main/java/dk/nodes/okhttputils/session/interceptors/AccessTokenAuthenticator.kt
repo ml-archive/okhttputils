@@ -2,12 +2,12 @@ package dk.nodes.okhttputils.session.interceptors
 
 import dk.nodes.okhttputils.session.AuthHeaderInfo
 import dk.nodes.okhttputils.session.base.AccessTokenRefresher
-import dk.nodes.okhttputils.session.base.AccessTokenRepository
+import dk.nodes.okhttputils.session.base.AuthRepository
 import dk.nodes.okhttputils.session.base.AuthResult
 import okhttp3.*
 
 class AccessTokenAuthenticator internal constructor(
-        private val tokenRepository: AccessTokenRepository,
+        private val tokenRepository: AuthRepository,
         private val refresher: AccessTokenRefresher,
         private val authHeaderInfo: AuthHeaderInfo) : Authenticator {
 

@@ -1,7 +1,7 @@
 package dk.nodes.okhttputils.session.base
 
 
-interface AccessTokenRepository {
+interface AuthRepository {
 
     /**
      * Saves value of the Access Token
