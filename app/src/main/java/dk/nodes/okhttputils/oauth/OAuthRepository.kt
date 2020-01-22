@@ -25,7 +25,6 @@ interface OAuthRepository {
      */
     fun getRefreshToken(): String?
 
-
     /**
      * Clears all stored tokens. Call this if a user signs out.
      */
