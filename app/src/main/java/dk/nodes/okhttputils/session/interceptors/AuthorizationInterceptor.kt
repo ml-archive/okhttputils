@@ -16,7 +16,7 @@ class AuthorizationInterceptor(private val tokenRepository: AccessTokenRepositor
             chain.proceed(request)
         } else {
             val newRequest = request.newBuilder()
-                    .header(authHeaderInfo.headerName, "${authHeaderInfo.headerPrefix} $token".trim())
+                    .header(authHeaderInfo.headerName, "${authHeaderInfo.headerPrefix}$token".trim())
                     .build()
             chain.proceed(newRequest)
         }

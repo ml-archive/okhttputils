@@ -36,7 +36,7 @@ class AccessTokenAuthenticator internal constructor(
                 return response
                         ?.request()
                         ?.newBuilder()
-                        ?.header(authHeaderInfo.headerName, "${authHeaderInfo.headerPrefix} $result".trim())
+                        ?.header(authHeaderInfo.headerName, "${authHeaderInfo.headerPrefix}$result".trim())
                         ?.build()
             }
         }
