@@ -1,4 +1,7 @@
-package dk.nodes.okhttputils.session.base
+package dk.nodes.okhttputils.oauth
+
+import dk.nodes.okhttputils.oauth.entities.OAuthInfo
+import dk.nodes.okhttputils.oauth.entities.OAuthResult
 
 interface OAuthCallback {
 

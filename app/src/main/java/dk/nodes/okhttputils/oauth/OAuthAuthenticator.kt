@@ -1,9 +1,7 @@
-package dk.nodes.okhttputils.session.interceptors
+package dk.nodes.okhttputils.oauth
 
-import dk.nodes.okhttputils.session.OAuthHeaderInfo
-import dk.nodes.okhttputils.session.base.OAuthCallback
-import dk.nodes.okhttputils.session.base.OAuthRepository
-import dk.nodes.okhttputils.session.base.OAuthResult
+import dk.nodes.okhttputils.oauth.entities.OAuthHeaderInfo
+import dk.nodes.okhttputils.oauth.entities.OAuthResult
 import okhttp3.Authenticator
 import okhttp3.Request
 import okhttp3.Response

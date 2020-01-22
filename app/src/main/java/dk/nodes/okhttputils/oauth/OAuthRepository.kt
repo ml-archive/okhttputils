@@ -1,4 +1,4 @@
-package dk.nodes.okhttputils.session.base
+package dk.nodes.okhttputils.oauth
 
 /**
  * A local repository for storing tokens. Implementation normally would use SharedPreferences or Room.

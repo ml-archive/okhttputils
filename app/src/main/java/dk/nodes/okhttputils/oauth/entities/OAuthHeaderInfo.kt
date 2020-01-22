@@ -1,4 +1,4 @@
-package dk.nodes.okhttputils.session
+package dk.nodes.okhttputils.oauth.entities
 
 data class OAuthHeaderInfo(
         val headerName: String = "Authorization",

@@ -1,4 +1,4 @@
-package dk.nodes.okhttputils.session.base
+package dk.nodes.okhttputils.oauth.entities
 
 data class OAuthInfo(
         val accessToken: String,
