@@ -1,7 +1,6 @@
 package dk.nodes.okhttputils.oauth
 
-import dk.nodes.okhttputils.oauth.entities.OAuthHeaderInfo
-import dk.nodes.okhttputils.oauth.entities.OAuthInfo
+import dk.nodes.okhttputils.oauth.entities.OAuthHeader
 import dk.nodes.okhttputils.oauth.entities.OAuthResult
 import okhttp3.Authenticator
 import okhttp3.Request
@@ -11,7 +10,7 @@ import okhttp3.Route
 class OAuthAuthenticator internal constructor(
         private val repository: OAuthRepository,
         private val callback: OAuthCallback,
-        private val headerInfo: OAuthHeaderInfo
+        private val header: OAuthHeader
 ) : Authenticator {
 
     override fun authenticate(route: Route?, response: Response): Request? {
@@ -35,11 +34,9 @@ class OAuthAuthenticator internal constructor(
 
                 request()
                         .newBuilder()
-                        .header(headerInfo.headerName, result.value.headerValue)
+                        .header(header.headerName, header.headerValue(result.value.accessToken))
                         .build()
             }
         }
     }
-
-    private val OAuthInfo.headerValue: String get() = "${headerInfo.headerPrefix}${accessToken}"
 }
