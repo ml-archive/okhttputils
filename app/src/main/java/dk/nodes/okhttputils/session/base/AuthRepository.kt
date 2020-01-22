@@ -1,27 +1,33 @@
 package dk.nodes.okhttputils.session.base
 
-
+/**
+ * A local (SharedPreferences, Room, ...) repository for storing tokens.
+ */
 interface AuthRepository {
 
     /**
-     * Saves value of the Access Token
+     * Stores the Access Token
      */
-    fun persistToken(token: String)
+    fun setAccessToken(accessToken: String?)
 
     /**
-     * @return value of the stored Access Token
+     * @return the stored Access Token
      */
-    fun retrieveToken() : String?
+    fun getAccessToken(): String
 
     /**
-     * @return value of the access Token
+     * Stores the Refresh Token
+     */
+    fun setRefreshToken(refreshToken: String?)
+
+    /**
+     * @return the stored Refresh Token
      */
     fun getRefreshToken(): String?
 
 
     /**
-     * Saves value of the refresh token
+     * Clears all stored tokens
      */
-    fun persistRefreshToken(token: String?)
-
+    fun clear()
 }

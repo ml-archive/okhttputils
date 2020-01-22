@@ -11,7 +11,7 @@ class AuthorizationInterceptor(private val tokenRepository: AuthRepository,
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
-        val token = tokenRepository.retrieveToken()
+        val token = tokenRepository.getAccessToken()
         return if (token.isNullOrBlank()) {
             chain.proceed(request)
         } else {

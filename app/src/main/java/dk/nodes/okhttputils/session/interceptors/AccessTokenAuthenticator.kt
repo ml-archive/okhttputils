@@ -31,8 +31,8 @@ class AccessTokenAuthenticator internal constructor(
             }
             // Persist new Token value and proceed with the request
             is AuthResult.Success -> {
-                tokenRepository.persistToken(result.data.getAccessToken())
-                tokenRepository.persistRefreshToken(result.data.getRefreshToken())
+                tokenRepository.setAccessToken(result.data.getAccessToken())
+                tokenRepository.setRefreshToken(result.data.getRefreshToken())
                 return response
                         ?.request()
                         ?.newBuilder()
