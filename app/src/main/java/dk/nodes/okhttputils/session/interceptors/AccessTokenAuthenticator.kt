@@ -23,7 +23,7 @@ class AccessTokenAuthenticator internal constructor(
     private fun proceedWithTokenRefreshment(response: Response?): Request? {
 
         // Ask refresher for a new token
-        val refreshToken = tokenRepository.getRefreshToken() ?: return null
+        val refreshToken = tokenRepository.getRefreshToken()
         val result = refresher.retrieveNewToken(refreshToken)
         return when (result) {
             is AuthResult.Error -> {
