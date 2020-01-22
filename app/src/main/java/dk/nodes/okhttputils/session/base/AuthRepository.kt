@@ -13,7 +13,7 @@ interface AuthRepository {
     /**
      * @return the stored Access Token
      */
-    fun getAccessToken(): String
+    fun getAccessToken(): String?
 
     /**
      * Stores the Refresh Token
