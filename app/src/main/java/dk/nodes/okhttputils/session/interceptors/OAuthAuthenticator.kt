@@ -1,18 +1,18 @@
 package dk.nodes.okhttputils.session.interceptors
 
-import dk.nodes.okhttputils.session.AuthHeaderInfo
-import dk.nodes.okhttputils.session.base.AuthCallback
-import dk.nodes.okhttputils.session.base.AuthRepository
-import dk.nodes.okhttputils.session.base.AuthResult
+import dk.nodes.okhttputils.session.OAuthHeaderInfo
+import dk.nodes.okhttputils.session.base.OAuthCallback
+import dk.nodes.okhttputils.session.base.OAuthRepository
+import dk.nodes.okhttputils.session.base.OAuthResult
 import okhttp3.Authenticator
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
 
-class AccessTokenAuthenticator internal constructor(
-        private val tokenRepository: AuthRepository,
-        private val callback: AuthCallback,
-        private val authHeaderInfo: AuthHeaderInfo) : Authenticator {
+class OAuthAuthenticator internal constructor(
+        private val repository: OAuthRepository,
+        private val callback: OAuthCallback,
+        private val headerInfo: OAuthHeaderInfo) : Authenticator {
 
 
     override fun authenticate(route: Route?, response: Response): Request? {
@@ -25,19 +25,19 @@ class AccessTokenAuthenticator internal constructor(
 
     private fun proceedWithTokenRefreshment(response: Response?): Request? {
         // Ask for new AuthInfo
-        val refreshToken = tokenRepository.getRefreshToken()
+        val refreshToken = repository.getRefreshToken()
         return when (val result = callback.provideAuthInfo(refreshToken)) {
-            is AuthResult.Error -> {
+            is OAuthResult.Error -> {
                 null
             }
             // Persist new AuthInfo and proceed with the request
-            is AuthResult.Success -> {
-                tokenRepository.setAccessToken(result.data.accessToken)
-                tokenRepository.setRefreshToken(result.data.refreshToken)
+            is OAuthResult.Success -> {
+                repository.setAccessToken(result.data.accessToken)
+                repository.setRefreshToken(result.data.refreshToken)
                 return response
                         ?.request()
                         ?.newBuilder()
-                        ?.header(authHeaderInfo.headerName, "${authHeaderInfo.headerPrefix}$result".trim())
+                        ?.header(headerInfo.headerName, "${headerInfo.headerPrefix}$result".trim())
                         ?.build()
             }
         }

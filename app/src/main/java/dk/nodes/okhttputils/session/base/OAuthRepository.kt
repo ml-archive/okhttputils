@@ -3,7 +3,7 @@ package dk.nodes.okhttputils.session.base
 /**
  * A local repository for storing tokens. Implementation normally would use SharedPreferences or Room.
  */
-interface AuthRepository {
+interface OAuthRepository {
 
     /**
      * Stores the Access Token

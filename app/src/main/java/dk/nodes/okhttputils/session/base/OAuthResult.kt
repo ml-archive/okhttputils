@@ -1,9 +1,9 @@
 package dk.nodes.okhttputils.session.base
 
-sealed class AuthResult<out T> {
+sealed class OAuthResult<out T> {
 
-    data class Success<out T>(val data: T) : AuthResult<T>()
-    data class Error(val exception: Exception) : AuthResult<Nothing>()
+    data class Success<out T>(val data: T) : OAuthResult<T>()
+    data class Error(val exception: Exception) : OAuthResult<Nothing>()
 
     override fun toString(): String {
         return when (this) {
