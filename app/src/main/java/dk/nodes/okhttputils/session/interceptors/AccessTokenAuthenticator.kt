@@ -1,6 +1,6 @@
 package dk.nodes.okhttputils.session.interceptors
 
-import dk.nodes.okhttputils.session.HeaderInfo
+import dk.nodes.okhttputils.session.AuthHeaderInfo
 import dk.nodes.okhttputils.session.base.AccessTokenRefresher
 import dk.nodes.okhttputils.session.base.AccessTokenRepository
 import dk.nodes.okhttputils.session.base.AuthResult
@@ -9,7 +9,7 @@ import okhttp3.*
 class AccessTokenAuthenticator internal constructor(
         private val tokenRepository: AccessTokenRepository,
         private val refresher: AccessTokenRefresher,
-        private val headerInfo: HeaderInfo) : Authenticator {
+        private val authHeaderInfo: AuthHeaderInfo) : Authenticator {
 
 
     override fun authenticate(route: Route?, response: Response): Request? {
@@ -36,7 +36,7 @@ class AccessTokenAuthenticator internal constructor(
                 return response
                         ?.request()
                         ?.newBuilder()
-                        ?.header(headerInfo.authHeaderName, "${headerInfo.authHeaderPrefix} $result".trim())
+                        ?.header(authHeaderInfo.headerName, "${authHeaderInfo.headerPrefix} $result".trim())
                         ?.build()
             }
         }

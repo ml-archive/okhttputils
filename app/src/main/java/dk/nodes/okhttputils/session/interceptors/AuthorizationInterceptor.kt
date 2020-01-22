@@ -1,12 +1,12 @@
 package dk.nodes.okhttputils.session.interceptors
 
-import dk.nodes.okhttputils.session.HeaderInfo
+import dk.nodes.okhttputils.session.AuthHeaderInfo
 import dk.nodes.okhttputils.session.base.AccessTokenRepository
 import okhttp3.Interceptor
 import okhttp3.Response
 
 class AuthorizationInterceptor(private val tokenRepository: AccessTokenRepository,
-                               private val headerInfo: HeaderInfo) : Interceptor {
+                               private val authHeaderInfo: AuthHeaderInfo) : Interceptor {
 
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -16,7 +16,7 @@ class AuthorizationInterceptor(private val tokenRepository: AccessTokenRepositor
             chain.proceed(request)
         } else {
             val newRequest = request.newBuilder()
-                    .header(headerInfo.authHeaderName, "${headerInfo.authHeaderPrefix} $token".trim())
+                    .header(authHeaderInfo.headerName, "${authHeaderInfo.headerPrefix} $token".trim())
                     .build()
             chain.proceed(newRequest)
         }
