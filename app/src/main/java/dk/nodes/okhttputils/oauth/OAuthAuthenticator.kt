@@ -34,7 +34,7 @@ class OAuthAuthenticator internal constructor(
 
                 request
                         .newBuilder()
-                        .header(header.headerName, header.headerValue(result.value.accessToken))
+                        .header(header.name, header.value(result.value.accessToken))
                         .build()
             }
         }

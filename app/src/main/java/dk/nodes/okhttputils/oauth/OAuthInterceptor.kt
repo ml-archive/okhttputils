@@ -14,7 +14,7 @@ class OAuthInterceptor(private val repository: OAuthRepository,
             chain.proceed(request)
         } else {
             val newRequest = request.newBuilder()
-                    .header(header.headerName, header.headerValue(accessToken))
+                    .header(header.name, header.value(accessToken))
                     .build()
             chain.proceed(newRequest)
         }
