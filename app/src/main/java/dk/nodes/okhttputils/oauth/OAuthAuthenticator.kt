@@ -14,10 +14,10 @@ class OAuthAuthenticator internal constructor(
 ) : Authenticator {
 
     override fun authenticate(route: Route?, response: Response): Request? {
-        return if (response.code() == 401) {
+        return if (response.code == 401) {
             response.applyOAuthInfo()
         } else {
-            response.request()
+            response.request
         }
     }
 
@@ -32,7 +32,7 @@ class OAuthAuthenticator internal constructor(
                 repository.setAccessToken(result.value.accessToken)
                 repository.setRefreshToken(result.value.refreshToken)
 
-                request()
+                request
                         .newBuilder()
                         .header(header.headerName, header.headerValue(result.value.accessToken))
                         .build()
