@@ -45,8 +45,7 @@ class OAuthInterceptorTest {
 
         val request = mockWebServer.takeRequest()
         val header = request.getHeader(oAuthHeader.name)
-        assertThat(header).isEqualTo(oAuthHeader.value(accessToken))
 
-        oAuthRepository.clear()
+        assertThat(header).isEqualTo(oAuthHeader.value(accessToken))
     }
 }
