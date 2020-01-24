@@ -10,7 +10,6 @@ import dk.nodes.okhttputils.oauth.entities.OAuthHeader
 import dk.nodes.okhttputils.oauth.entities.OAuthInfo
 import dk.nodes.okhttputils.oauth.entities.OAuthResult
 import io.mockk.every
-import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.mockk
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -29,7 +28,6 @@ class OAuthAuthenticatorTest {
     private val oAuthHeader = OAuthHeader()
     private val oAuthRepository = TestRepository()
 
-    @RelaxedMockK
     private val oAuthCallback = mockk<OAuthCallback> {
         every { provideAuthInfo("test_refresh_token") } returns OAuthResult.Success(OAuthInfo(
                 accessToken = "test_access_token_from_callback",
@@ -46,7 +44,7 @@ class OAuthAuthenticatorTest {
     }
 
     @Test
-    fun `When request fails with 401, Then OAuthAuthenticator requests new OAuthInfo`() {
+    fun `When request fails with 401, OAuthAuthenticator requests new OAuthInfo`() {
         oAuthRepository.setRefreshToken("test_access_token")
         oAuthRepository.setRefreshToken("test_refresh_token")
 
@@ -61,9 +59,14 @@ class OAuthAuthenticatorTest {
         testApi.test().execute()
 
         mockWebServer.takeRequest()
-        mockWebServer.takeRequest()
+        val request = mockWebServer.takeRequest()
+        val header = request.getHeader(oAuthHeader.name)
 
+        // Verify new tokens
         assertThat(oAuthRepository.getAccessToken()).isEqualTo("test_access_token_from_callback")
         assertThat(oAuthRepository.getRefreshToken()).isEqualTo("test_refresh_token_from_callback")
+
+        // Verify new access-token header
+        assertThat(header).isEqualTo(oAuthHeader.value("test_access_token_from_callback"))
     }
 }
