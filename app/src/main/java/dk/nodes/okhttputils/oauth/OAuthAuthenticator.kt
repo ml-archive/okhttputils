@@ -15,13 +15,13 @@ class OAuthAuthenticator internal constructor(
 
     override fun authenticate(route: Route?, response: Response): Request? {
         return if (response.code == 401) {
-            response.applyOAuthInfo()
+            response.request.applyOAuthInfo()
         } else {
             response.request
         }
     }
 
-    private fun Response.applyOAuthInfo(): Request? {
+    private fun Request.applyOAuthInfo(): Request? {
         val refreshToken = repository.getRefreshToken()
 
         return when (val result = callback.provideAuthInfo(refreshToken)) {
@@ -32,8 +32,7 @@ class OAuthAuthenticator internal constructor(
                 repository.setAccessToken(result.value.accessToken)
                 repository.setRefreshToken(result.value.refreshToken)
 
-                request
-                        .newBuilder()
+                newBuilder()
                         .header(header.name, header.value(result.value.accessToken))
                         .build()
             }
