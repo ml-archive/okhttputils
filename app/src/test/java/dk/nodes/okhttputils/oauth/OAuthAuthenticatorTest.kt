@@ -45,7 +45,7 @@ class OAuthAuthenticatorTest {
 
     @Test
     fun `When call fails with 401, Then authenticator refreshes tokens`() {
-        oAuthRepository.setRefreshToken("test_access_token")
+        oAuthRepository.setAccessToken("test_access_token")
         oAuthRepository.setRefreshToken("test_refresh_token")
 
         val invalidTokenResponse = MockResponse().setResponseCode(401)
