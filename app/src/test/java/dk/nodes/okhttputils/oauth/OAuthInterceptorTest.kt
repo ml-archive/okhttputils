@@ -29,7 +29,7 @@ class OAuthInterceptorTest {
     @Before
     fun setUp() {
         val oAuthInterceptor = OAuthInterceptor(oAuthRepository, oAuthHeader)
-        val apiFactory = TestApiFactory(oAuthInterceptor)
+        val apiFactory = TestApiFactory(interceptor = oAuthInterceptor)
         testApi = apiFactory.createApi(TestApi::class.java, httpUrl.toString())
     }
 
