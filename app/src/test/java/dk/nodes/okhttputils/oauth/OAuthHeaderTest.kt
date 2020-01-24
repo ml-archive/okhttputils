@@ -7,7 +7,7 @@ import org.junit.Test
 class OAuthHeaderTest {
 
     @Test
-    fun `Every value() call returns a value with prefix`() {
+    fun `When value() is called, Then value with prefix is returned`() {
         val oAuthHeader = OAuthHeader(name = "test_name", valuePrefix = "test_prefix")
         val accessToken = "test_access_token"
         val valueResult = oAuthHeader.value(accessToken)

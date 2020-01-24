@@ -34,7 +34,7 @@ class OAuthInterceptorTest {
     }
 
     @Test
-    fun `For every call, the OAuthHeader is added`() {
+    fun `When a call is done, Then OAuthHeader is added`() {
         val accessToken = "test_access_token"
         val successResponse = MockResponse().setBody(testDataJson)
 

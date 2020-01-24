@@ -44,7 +44,7 @@ class OAuthAuthenticatorTest {
     }
 
     @Test
-    fun `When request fails with 401, OAuthAuthenticator requests new OAuthInfo`() {
+    fun `When call fails with 401, Then authenticator refreshes tokens`() {
         oAuthRepository.setRefreshToken("test_access_token")
         oAuthRepository.setRefreshToken("test_refresh_token")
 
