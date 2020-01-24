@@ -49,24 +49,24 @@ class OAuthAuthenticatorTest {
         oAuthRepository.setRefreshToken("test_refresh_token")
 
         val invalidTokenResponse = MockResponse().setResponseCode(401)
-        val refreshResponse = MockResponse().setResponseCode(200).setBody(testDataJson)
+        val successResponse = MockResponse().setResponseCode(200).setBody(testDataJson)
 
         // Enqueue 401 response
         mockWebServer.enqueue(invalidTokenResponse)
         // Enqueue 200 original response
-        mockWebServer.enqueue(refreshResponse)
+        mockWebServer.enqueue(successResponse)
 
         testApi.test().execute()
 
         mockWebServer.takeRequest()
-        val request = mockWebServer.takeRequest()
-        val header = request.getHeader(oAuthHeader.name)
+        val successRequest = mockWebServer.takeRequest()
+        val successHeader = successRequest.getHeader(oAuthHeader.name)
 
         // Verify new tokens
         assertThat(oAuthRepository.getAccessToken()).isEqualTo("test_access_token_from_callback")
         assertThat(oAuthRepository.getRefreshToken()).isEqualTo("test_refresh_token_from_callback")
 
         // Verify new access-token header
-        assertThat(header).isEqualTo(oAuthHeader.value("test_access_token_from_callback"))
+        assertThat(successHeader).isEqualTo(oAuthHeader.value("test_access_token_from_callback"))
     }
 }
