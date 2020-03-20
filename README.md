@@ -1,6 +1,19 @@
 # okhttputils
 Contains various different utilities for the OkHttp library usable across multiple projects.
 
+## Installation
+Remove the excludes if the libraries are not already present in your app (they most likely are :D)
+```groovy
+implementation ('dk.nodes.utils:okhttp:0.12.2')
+{
+    exclude module: 'retrofit:2.1.0'
+    exclude module: 'converter-gson:2.1.0'
+    exclude module: 'okhttp:3.4.1'
+    exclude module: 'gson:2.8.0'
+}
+```
+
+
 ## HttpErrorManager
 This is a global error handler for http requests performed by the OkHttp library.
 The idea is that instead of having to handle common error codes like 442 (invalid token) each place
@@ -44,16 +57,3 @@ HttpErrorManager.setHandler(443, invalidAuthHandler);
 If the user returns true from the onError method the dialog is shown. If no dialog is shown the onDialogClosed function
 will not get called.
 
-
-## Installation
-```groovy
-compile ('dk.nodes.utils:okhttp:0.8')
-{
-    exclude module: 'retrofit:2.1.0'
-    exclude module: 'converter-gson:2.1.0'
-    exclude module: 'okhttp:3.4.1'
-    exclude module: 'gson:2.8.0'
-}
-```
-
-Remove the excludes if the libraries are not already present in your app (they most likely are :D)
