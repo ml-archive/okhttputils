@@ -7,7 +7,7 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
 
-class OAuthAuthenticator internal constructor(
+class OAuthAuthenticator(
         private val repository: OAuthRepository,
         private val callback: OAuthCallback,
         private val header: OAuthHeader
