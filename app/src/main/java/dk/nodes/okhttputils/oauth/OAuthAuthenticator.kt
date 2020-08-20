@@ -14,10 +14,10 @@ class OAuthAuthenticator(
 ) : Authenticator {
 
     override fun authenticate(route: Route?, response: Response): Request? {
-        return if (response.code == 401) {
-            response.request.applyOAuthInfo()
+        return if (response.code() == 401) {
+            response.request().applyOAuthInfo()
         } else {
-            response.request
+            response.request()
         }
     }
 
